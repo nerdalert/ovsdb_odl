@@ -1,17 +1,21 @@
 package org.opendaylight.ovsdb.table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class OvsTableInfo {
 
-    @JsonProperty("new")
-    private New unique;
 
-    private New getNew() {
+    @JsonProperty("new")
+    public New unique;
+
+    public New getUnique() {
         return unique;
     }
 
-    private void setNew(New unique) {
+    public void setUnique(New unique) {
         this.unique = unique;
     }
 

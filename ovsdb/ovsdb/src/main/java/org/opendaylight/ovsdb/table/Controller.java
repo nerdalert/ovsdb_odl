@@ -10,21 +10,21 @@ public class Controller {
 
     Map<String, ControllerInfo> controllerInfo = new HashMap<String, ControllerInfo>();
 
-    private Map<String, ControllerInfo> getControllerInfo() {
+    public Map<String, ControllerInfo> getControllerInfo() {
         return controllerInfo;
     }
 
-    private void setControllerInfo(Map<String, ControllerInfo> controllerInfo) {
+    public void setControllerInfo(Map<String, ControllerInfo> controllerInfo) {
         this.controllerInfo = controllerInfo;
     }
 
     @JsonAnySetter
-    private void add(String key, ControllerInfo value) {
+    public void add(String key, ControllerInfo value) {
         controllerInfo.put(key, value);
     }
 
     @JsonAnyGetter
-    private Map<String, ControllerInfo> getProperties() {
+    public Map<String, ControllerInfo> getProperties() {
         return controllerInfo;
     }
 
