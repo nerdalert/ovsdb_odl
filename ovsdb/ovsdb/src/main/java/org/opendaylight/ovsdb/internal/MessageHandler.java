@@ -1,5 +1,6 @@
 package org.opendaylight.ovsdb.internal;
 
+import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -48,6 +49,7 @@ public class MessageHandler extends SimpleChannelInboundHandler<String> {
                 //   String reply = "{\"result\":[], \"id\":\"echo\"}";
                 ctx.writeAndFlush(echoReplyJnode.toString());
             }
+
         }
         else if(jsonNode.has("result")){
             Long requestId = jsonNode.get("id").asLong();
@@ -62,8 +64,28 @@ public class MessageHandler extends SimpleChannelInboundHandler<String> {
                 e.printStackTrace();
             }
         }
+        else {
+            try {
+                JsonFactory factory = mapper.getJsonFactory();
+                JsonParser jparse = null;
+                //Map to Root Pojo Data.class
+                jparse = factory.createJsonParser(msg);
+                JsonNode actualObj = mapper.readTree(jparse);
+                Data hostreply = mapper.treeToValue(actualObj, Data.class);
 
+                // Raw MSG String Return Print
+                System.out.println(msg);
+                //Example Return ID
+                System.out.println("Json Response for channel ID ==> " + hostreply.Id());
+                //Example Return Error
+                System.out.println("Bridge Table UUID is ==> " + hostreply.getError());
+                //Example Return Result
+                System.out.println("Open_vSwitch Table UUID is ==> " + hostreply.getResults().getOvsTable().keySet());
 
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) throws Exception{

@@ -12,21 +12,21 @@ public class Bridge {
 
     Map<String, BridgeInfo> bridgeInfo = new HashMap<String, BridgeInfo>();
 
-    private Map<String, BridgeInfo> getBridgeInfo() {
+    public Map<String, BridgeInfo> getBridgeInfo() {
         return bridgeInfo;
     }
 
-    private void setBridgeInfo(Map<String, BridgeInfo> bridgeInfo) {
+    public void setBridgeInfo(Map<String, BridgeInfo> bridgeInfo) {
         this.bridgeInfo = bridgeInfo;
     }
 
     @JsonAnySetter
-    private void add(String key, BridgeInfo value) {
+    public void add(String key, BridgeInfo value) {
         bridgeInfo.put(key, value);
     }
 
     @JsonAnyGetter
-    private Map<String, BridgeInfo> getProperties() {
+    public Map<String, BridgeInfo> getProperties() {
         return bridgeInfo;
     }
 

@@ -1,5 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="Osmorc" name="OSGi">
+      <configuration manifestGenerationMode="OsmorcControlled" manifestLocation="" jarfileLocation="ovsdb-0.4.0-SNAPSHOT.jar" outputPathType="CompilerOutputPath" bndFileLocation="" bundlorFileLocation="" bundleActivator="org.opendaylight.ovsdb.internal.Activator" bundleSymbolicName="org.opendaylight.ovsdb" bundleVersion="0.4.0.SNAPSHOT" ignoreFilePattern="" useProjectDefaultManifestFileLocation="true" alwaysRebuildBundleJAR="false" doNotSynchronizeWithMaven="false">
+        <additionalProperties>
+          <property key="Import-Package" value="org.opendaylight.controller.sal.packet,org.opendaylight.controller.sal.action,org.opendaylight.controller.sal.discovery,org.opendaylight.controller.sal.topology,org.opendaylight.controller.sal.core,org.opendaylight.controller.sal.flowprogrammer,org.opendaylight.controller.sal.reader,org.opendaylight.controller.sal.inventory,org.opendaylight.controller.sal.match,org.opendaylight.controller.sal.utils,org.opendaylight.controller.sal.connection,org.opendaylight.controller.sal.networkconfig.bridgedomain,org.apache.commons.lang3.builder,org.apache.commons.lang3.tuple,org.apache.felix.dm,org.slf4j,org.eclipse.osgi.framework.console,org.osgi.framework,javax.net.ssl,*" />
+          <property key="Embed-Dependency" value="jsonrpc4j,httpclient,commons-codec,httpcore-nio,javax.servlet-api,jackson-annotations,jackson-core,jackson-databind,portlet-api;type=!pom;inline=false" />
+          <property key="Embed-Transitive" value="true" />
+          <property key="Bundle-Name" value="org.opendaylight.ovsdb" />
+          <property key="Bundle-ClassPath" value=".,jsonrpc4j-0.28.jar,commons-codec-1.4.jar,commons-codec-1.2.jar,httpcore-nio-4.2.1.jar,jackson-annotations-2.0.2.jar,jackson-core-2.0.2.jar,jackson-databind-2.0.2.jar,portlet-api-2.0.jar" />
+          <property key="Include-Resource" value="jsonrpc4j-0.28.jar=$MAVEN_REPOSITORY$/com/googlecode/jsonrpc4j/0.28/jsonrpc4j-0.28.jar,commons-codec-1.4.jar=$MAVEN_REPOSITORY$/commons-codec/commons-codec/1.4/commons-codec-1.4.jar,commons-codec-1.2.jar=$MAVEN_REPOSITORY$/commons-codec/commons-codec/1.2/commons-codec-1.2.jar,httpcore-nio-4.2.1.jar=$MAVEN_REPOSITORY$/org/apache/httpcomponents/httpcore-nio/4.2.1/httpcore-nio-4.2.1.jar,jackson-annotations-2.0.2.jar=$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-annotations/2.0.2/jackson-annotations-2.0.2.jar,jackson-core-2.0.2.jar=$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-core/2.0.2/jackson-core-2.0.2.jar,jackson-databind-2.0.2.jar=$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-databind/2.0.2/jackson-databind-2.0.2.jar,portlet-api-2.0.jar=$MAVEN_REPOSITORY$/javax/portlet/portlet-api/2.0/portlet-api-2.0.jar" />
+          <property key="Embedded-Artifacts" value="jsonrpc4j-0.28.jar;g=&quot;com.googlecode&quot;;a=&quot;jsonrpc4j&quot;;v=&quot;0.28&quot;,commons-codec-1.4.jar;g=&quot;commons-codec&quot;;a=&quot;commons-codec&quot;;v=&quot;1.4&quot;,commons-codec-1.2.jar;g=&quot;commons-codec&quot;;a=&quot;commons-codec&quot;;v=&quot;1.2&quot;,httpcore-nio-4.2.1.jar;g=&quot;org.apache.httpcomponents&quot;;a=&quot;httpcore-nio&quot;;v=&quot;4.2.1&quot;,jackson-annotations-2.0.2.jar;g=&quot;com.fasterxml.jackson.core&quot;;a=&quot;jackson-annotations&quot;;v=&quot;2.0.2&quot;,jackson-core-2.0.2.jar;g=&quot;com.fasterxml.jackson.core&quot;;a=&quot;jackson-core&quot;;v=&quot;2.0.2&quot;,jackson-databind-2.0.2.jar;g=&quot;com.fasterxml.jackson.core&quot;;a=&quot;jackson-databind&quot;;v=&quot;2.0.2&quot;,portlet-api-2.0.jar;g=&quot;javax.portlet&quot;;a=&quot;portlet-api&quot;;v=&quot;2.0&quot;" />
+        </additionalProperties>
+        <additionalJARContents />
+      </configuration>
+    </facet>
+    <facet type="osgiBundleFacet" name="OSGi Bundle">
+      <configuration />
+    </facet>
+    <facet type="osgiBundleFacetType" name="OSGi Bundle">
+      <configuration>
+        <properties />
+      </configuration>
+    </facet>
+  </component>
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_6" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />

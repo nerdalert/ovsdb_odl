@@ -2,30 +2,31 @@ package org.opendaylight.ovsdb.table;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.HashMap;
 import java.util.Map;
 
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class OvsTable {
 
     Map<String, OvsTableInfo> ovstableInfo = new HashMap<String, OvsTableInfo>();
 
-    private Map<String, OvsTableInfo> getOvstableInfo() {
+    public Map<String, OvsTableInfo> getOvstableInfo() {
         return ovstableInfo;
     }
 
-    private void setOvstableInfo(Map<String, OvsTableInfo> ovstableInfo) {
+    public void setOvstableInfo(Map<String, OvsTableInfo> ovstableInfo) {
         this.ovstableInfo = ovstableInfo;
     }
 
     @JsonAnySetter
-    private void add(String key, OvsTableInfo value) {
+    public void add(String key, OvsTableInfo value) {
         ovstableInfo.put(key, value);
     }
 
     @JsonAnyGetter
-    private Map<String, OvsTableInfo> getProperties() {
+    public Map<String, OvsTableInfo> getProperties() {
         return ovstableInfo;
     }
 
