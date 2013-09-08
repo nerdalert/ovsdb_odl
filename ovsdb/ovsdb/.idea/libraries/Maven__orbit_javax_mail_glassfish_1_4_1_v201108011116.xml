@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: orbit:javax.mail.glassfish:1.4.1.v201108011116">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/orbit/javax.mail.glassfish/1.4.1.v201108011116/javax.mail.glassfish-1.4.1.v201108011116.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/orbit/javax.mail.glassfish/1.4.1.v201108011116/javax.mail.glassfish-1.4.1.v201108011116-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/orbit/javax.mail.glassfish/1.4.1.v201108011116/javax.mail.glassfish-1.4.1.v201108011116-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

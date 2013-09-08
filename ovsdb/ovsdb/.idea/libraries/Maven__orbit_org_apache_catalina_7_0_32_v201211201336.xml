@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: orbit:org.apache.catalina:7.0.32.v201211201336">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/orbit/org.apache.catalina/7.0.32.v201211201336/org.apache.catalina-7.0.32.v201211201336.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/orbit/org.apache.catalina/7.0.32.v201211201336/org.apache.catalina-7.0.32.v201211201336-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/orbit/org.apache.catalina/7.0.32.v201211201336/org.apache.catalina-7.0.32.v201211201336-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

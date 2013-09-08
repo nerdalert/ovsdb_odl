@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.opendaylight.yangtools:yang-binding:0.5.7-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/opendaylight/yangtools/yang-binding/0.5.7-SNAPSHOT/yang-binding-0.5.7-20130906.164932-52.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/opendaylight/yangtools/yang-binding/0.5.7-SNAPSHOT/yang-binding-0.5.7-20130906.164932-52-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/opendaylight/yangtools/yang-binding/0.5.7-SNAPSHOT/yang-binding-0.5.7-20130906.164932-52-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

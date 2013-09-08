@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: virgomirror:org.eclipse.jdt.core.compiler.batch:3.8.0.I20120518-2145">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/virgomirror/org.eclipse.jdt.core.compiler.batch/3.8.0.I20120518-2145/org.eclipse.jdt.core.compiler.batch-3.8.0.I20120518-2145.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/virgomirror/org.eclipse.jdt.core.compiler.batch/3.8.0.I20120518-2145/org.eclipse.jdt.core.compiler.batch-3.8.0.I20120518-2145-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/virgomirror/org.eclipse.jdt.core.compiler.batch/3.8.0.I20120518-2145/org.eclipse.jdt.core.compiler.batch-3.8.0.I20120518-2145-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

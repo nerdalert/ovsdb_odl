@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: orbit:javax.activation:1.1.0.v201211130549">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/orbit/javax.activation/1.1.0.v201211130549/javax.activation-1.1.0.v201211130549.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/orbit/javax.activation/1.1.0.v201211130549/javax.activation-1.1.0.v201211130549-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/orbit/javax.activation/1.1.0.v201211130549/javax.activation-1.1.0.v201211130549-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

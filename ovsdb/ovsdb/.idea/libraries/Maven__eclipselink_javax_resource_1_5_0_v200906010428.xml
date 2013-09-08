@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: eclipselink:javax.resource:1.5.0.v200906010428">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/eclipselink/javax.resource/1.5.0.v200906010428/javax.resource-1.5.0.v200906010428.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/eclipselink/javax.resource/1.5.0.v200906010428/javax.resource-1.5.0.v200906010428-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/eclipselink/javax.resource/1.5.0.v200906010428/javax.resource-1.5.0.v200906010428-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

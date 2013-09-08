@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: orbit:javax.xml.rpc:1.1.0.v201005080400">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/orbit/javax.xml.rpc/1.1.0.v201005080400/javax.xml.rpc-1.1.0.v201005080400.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/orbit/javax.xml.rpc/1.1.0.v201005080400/javax.xml.rpc-1.1.0.v201005080400-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/orbit/javax.xml.rpc/1.1.0.v201005080400/javax.xml.rpc-1.1.0.v201005080400-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

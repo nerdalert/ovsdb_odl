@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.opendaylight.controller.thirdparty:org.openflow.openflowj:1.0.2-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/opendaylight/controller/thirdparty/org.openflow.openflowj/1.0.2-SNAPSHOT/org.openflow.openflowj-1.0.2-20130906.190111-754.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/opendaylight/controller/thirdparty/org.openflow.openflowj/1.0.2-SNAPSHOT/org.openflow.openflowj-1.0.2-20130906.190111-754-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/opendaylight/controller/thirdparty/org.openflow.openflowj/1.0.2-SNAPSHOT/org.openflow.openflowj-1.0.2-20130906.190111-754-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

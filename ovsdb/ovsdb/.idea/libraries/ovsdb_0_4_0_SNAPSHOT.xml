@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="ovsdb-0.4.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/target/ovsdb-0.4.0-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

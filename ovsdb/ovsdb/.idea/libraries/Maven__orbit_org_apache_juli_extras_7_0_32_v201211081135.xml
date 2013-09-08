@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: orbit:org.apache.juli.extras:7.0.32.v201211081135">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/orbit/org.apache.juli.extras/7.0.32.v201211081135/org.apache.juli.extras-7.0.32.v201211081135.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/orbit/org.apache.juli.extras/7.0.32.v201211081135/org.apache.juli.extras-7.0.32.v201211081135-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/orbit/org.apache.juli.extras/7.0.32.v201211081135/org.apache.juli.extras-7.0.32.v201211081135-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

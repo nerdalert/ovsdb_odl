@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: orbit:javax.annotation:1.1.0.v201209060031">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/orbit/javax.annotation/1.1.0.v201209060031/javax.annotation-1.1.0.v201209060031.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/orbit/javax.annotation/1.1.0.v201209060031/javax.annotation-1.1.0.v201209060031-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/orbit/javax.annotation/1.1.0.v201209060031/javax.annotation-1.1.0.v201209060031-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

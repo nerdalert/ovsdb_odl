@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.opendaylight.controller:sal.networkconfiguration:0.0.1-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/opendaylight/controller/sal.networkconfiguration/0.0.1-SNAPSHOT/sal.networkconfiguration-0.0.1-20130906.190058-126.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/opendaylight/controller/sal.networkconfiguration/0.0.1-SNAPSHOT/sal.networkconfiguration-0.0.1-20130906.190058-126-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/opendaylight/controller/sal.networkconfiguration/0.0.1-SNAPSHOT/sal.networkconfiguration-0.0.1-20130906.190058-126-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

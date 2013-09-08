@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: orbit:javax.servlet.jsp.jstl.impl:1.2.0.v201210211230">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/orbit/javax.servlet.jsp.jstl.impl/1.2.0.v201210211230/javax.servlet.jsp.jstl.impl-1.2.0.v201210211230.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/orbit/javax.servlet.jsp.jstl.impl/1.2.0.v201210211230/javax.servlet.jsp.jstl.impl-1.2.0.v201210211230-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/orbit/javax.servlet.jsp.jstl.impl/1.2.0.v201210211230/javax.servlet.jsp.jstl.impl-1.2.0.v201210211230-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

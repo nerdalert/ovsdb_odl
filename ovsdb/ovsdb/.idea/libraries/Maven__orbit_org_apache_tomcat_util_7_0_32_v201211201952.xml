@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: orbit:org.apache.tomcat.util:7.0.32.v201211201952">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/orbit/org.apache.tomcat.util/7.0.32.v201211201952/org.apache.tomcat.util-7.0.32.v201211201952.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/orbit/org.apache.tomcat.util/7.0.32.v201211201952/org.apache.tomcat.util-7.0.32.v201211201952-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/orbit/org.apache.tomcat.util/7.0.32.v201211201952/org.apache.tomcat.util-7.0.32.v201211201952-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

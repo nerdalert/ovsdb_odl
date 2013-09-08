@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.opendaylight.controller:sal:0.5.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/opendaylight/controller/sal/0.5.0-SNAPSHOT/sal-0.5.0-20130906.190055-555.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/opendaylight/controller/sal/0.5.0-SNAPSHOT/sal-0.5.0-20130906.190055-555-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/opendaylight/controller/sal/0.5.0-SNAPSHOT/sal-0.5.0-20130906.190055-555-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
