@@ -20,12 +20,9 @@ public class Port {
     @Override
     public String toString() {
         return "Port.class getName = " + portInfo.getName().toString() + "]\n" +
-                "[Port.class,PortInfo getInterfaces = " + portInfo
-                .getInterfaces().toString() + "]\n" +
-                "[Port.class,PortInfo getTag = " + portInfo.getTag().toString
-                () + "]\n" +
-                "[Port.class,PortInfo getTrunks = " + portInfo.getTrunks()
-                .toString() + "]\n";
-        //Remove to debug ext_id   "[Port.class getExternal_ids = " + portInfo.getexternal_ids().toString() + "]\n";
+                "[Port.class,PortInfo getInterfaces = " + portInfo.getInterfaces().toString() + "]\n" +
+                "[Port.class,PortInfo getTag = " + portInfo.getTag().toString() + "]\n" +
+                "[Port.class,PortInfo getTrunks = " + portInfo.getTrunks().toString() + "]\n" +
+                "[Port.class getExternal_ids = " + portInfo.getexternal_ids().toString() + "]\n";
     }
 }

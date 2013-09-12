@@ -4,10 +4,7 @@ import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.MappingJsonFactory;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.RuntimeJsonMappingException;
+import com.fasterxml.jackson.databind.*;
 
 import java.io.IOException;
 import java.io.StringReader;
@@ -83,13 +80,13 @@ public class DriverTest {
                 "\"ptcp:6634:172.16.58.128\",\"is_connected\":false}}}}}";
 
         // The rest are from the following monitor structure.
-        // {"method":"monitor","id":0,"params":["Open_vSwitch",null,
-        // {"Port":{"columns":["interfaces","name","tag","trunks","external_ids"]},
-        // "Controller":{"columns":["is_connected","target"]},"Interface":
-        // {"columns":["name","options","type"]},"Open_vSwitch":{"columns":
-        // ["bridges","cur_cfg","manager_options","ovs_version"]},
-        // "Manager":{"columns":["is_connected","target"]},
-        // "Bridge":{"columns":["controller","fail_mode","name","ports"]}}]}
+//        {"method":"monitor","id":0,"params":["Open_vSwitch",null,
+//        {"Port":{"columns":["interfaces","name","tag","trunks","external_ids"]},
+//        "Controller":{"columns":["is_connected","target"]},"Interface":
+//        {"columns":["name","options","type"]},"Open_vSwitch":{"columns":
+//        ["bridges","cur_cfg","manager_options","ovs_version"]},
+//        "Manager":{"columns":["is_connected","target"]},
+//        "Bridge":{"columns":["controller","fail_mode","name","ports"]}}]}
 
         // ## Each Table broken down individually for testing ##
         //Port table only
@@ -164,21 +161,24 @@ public class DriverTest {
 
         //All Tables returned together
         String lmsg = "{\"id\":0,\"error\":null," +
-                "" + "\"result\":{\"Port\":{\"ff306c93-bdef-4176-a4f3" +
-                "-d02e15654c42\":{\"new\":{\"trunks\":[\"set\",[]]," +
-                "\"interfaces\":[\"uuid\"," +
+                "\"result\":{\"Port\":{\"ff306c93-bdef-4176-a4f3-d02e15654c42" +
+                "\":{\"new\":{\"trunks\":[\"set\",[]]," +
+                "\"external_ids\":[\"map\",[]],\"interfaces\":[\"uuid\"," +
                 "\"89e67257-b713-4f93-b9af-a80427551972\"],\"name\":\"br1\"," +
                 "\"tag\":[\"set\",[]]}}," +
                 "\"52f4b20f-9667-40a7-ac4b-22745e1caff2\":{\"new\":{\"trunks" +
-                "\":[\"set\",[]],\"interfaces\":[\"uuid\"," +
+                "\":[\"set\",[]],\"external_ids\":[\"map\",[[\"key1\"," +
+                "\"FOO\"]]],\"interfaces\":[\"uuid\"," +
                 "\"33905368-e18e-4363-a29e-7312268e88bb\"],\"name\":\"vif0\"," +
                 "\"tag\":[\"set\",[]]}}," +
                 "\"a6064640-e0bb-4c8f-a8ab-4ba5a49c6b6a\":{\"new\":{\"trunks" +
-                "\":[\"set\",[]],\"interfaces\":[\"uuid\"," +
+                "\":[\"set\",[]],\"external_ids\":[\"map\",[]]," +
+                "\"interfaces\":[\"uuid\"," +
                 "\"da6059d2-da62-4135-947d-a41b98f72309\"],\"name\":\"gre1\"," +
                 "\"tag\":[\"set\",[]]}}," +
                 "\"c816ef48-055f-4929-bcc2-fbd6218211dd\":{\"new\":{\"trunks" +
-                "\":[\"set\",[]],\"interfaces\":[\"uuid\"," +
+                "\":[\"set\",[]],\"external_ids\":[\"map\",[]]," +
+                "\"interfaces\":[\"uuid\"," +
                 "\"472fea0a-2c38-4f7b-8cb5-95f9fcbee79b\"],\"name\":\"br0\"," +
                 "\"tag\":[\"set\",[]]}}}," +
                 "\"Controller\":{\"f0dbada6-838e-47a7-9ddc-2fd74fa5ae9e" +
@@ -199,42 +199,66 @@ public class DriverTest {
                 "\":{\"new\":{\"ovs_version\":\"1.4.3\",\"cur_cfg\":412," +
                 "\"bridges\":[\"set\",[[\"uuid\"," +
                 "\"424544d3-eba9-412a-8fa6-844767f0ad32\"],[\"uuid\"," +
-                "\"56f04394-7fba-4997-b784-5cf8ff5de1f2\"]]]," +
-                "\"manager_options\":[\"uuid\"," +
-                "\"2928ae71-fc80-4ead-b156-fbd2a97ee308\"]}}}," +
-                "\"Bridge\":{\"424544d3-eba9-412a-8fa6-844767f0ad32\":{\"new" +
-                "\":{\"name\":\"br0\",\"ports\":[\"set\",[[\"uuid\"," +
-                "\"52f4b20f-9667-40a7-ac4b-22745e1caff2\"],[\"uuid\"," +
-                "\"c816ef48-055f-4929-bcc2-fbd6218211dd\"]]]," +
-                "\"controller\":[\"uuid\"," +
-                "\"f0dbada6-838e-47a7-9ddc-2fd74fa5ae9e\"]," +
-                "\"fail_mode\":[\"set\",[]]}}," +
-                "\"56f04394-7fba-4997-b784-5cf8ff5de1f2\":{\"new\":{\"name" +
-                "\":\"br1\",\"ports\":[\"set\",[[\"uuid\"," +
-                "\"a6064640-e0bb-4c8f-a8ab-4ba5a49c6b6a\"],[\"uuid\"," +
-                "\"ff306c93-bdef-4176-a4f3-d02e15654c42\"]]]," +
-                "\"controller\":[\"set\",[]],\"fail_mode\":[\"set\",[]]}}}," +
-                "\"Manager\":{\"2928ae71-fc80-4ead-b156-fbd2a97ee308\":{\"new" +
-                "\":{\"target\":\"ptcp:6634:172.16.58.128\"," +
-                "\"is_connected\":false}}}}}";
+                "\"56f04394-7fba-4997-b784-5cf8ff5de1f2\"]]],\"manager_options\":" +
+                "[\"uuid\",\"2928ae71-fc80-4ead-b156-fbd2a97ee308\"]}}},\"Bridge\":" +
+                "{\"424544d3-eba9-412a-8fa6-844767f0ad32\":{\"new\":{\"name\":" +
+                "\"br0\",\"ports\":[\"set\",[[\"uuid\",\"" +
+                "52f4b20f-9667-40a7-ac4b-22745e1caff2\"],[\"uuid\"," +
+                "\"c816ef48-055f-4929-bcc2-fbd6218211dd\"]]],\"controller\":" +
+                "[\"uuid\",\"f0dbada6-838e-47a7-9ddc-2fd74fa5ae9e\"],\"fail_mode\":" +
+                "[\"set\",[]]}},\"56f04394-7fba-4997-b784-5cf8ff5de1f2\":{\"new\"" +
+                ":{\"name\":\"br1\",\"ports\":[\"set\",[[\"uuid\"," +
+                "\"a6064640-e0bb-4c8f-a8ab-4ba5a49c6b6a\"],[\"uuid\",\"" +
+                "ff306c93-bdef-4176-a4f3-d02e15654c42\"]]],\"controller\":" +
+                "[\"set\",[]],\"fail_mode\":[\"set\",[]]}}},\"Manager\":" +
+                "{\"2928ae71-fc80-4ead-b156-fbd2a97ee308\":{\"new\":{\"target\"" +
+                ":\"ptcp:6634:172.16.58.128\",\"is_connected\":false}}}}}";
 
         ObjectMapper mapper = new ObjectMapper();
 
         try {
 
+            //  System.out.println(lmsg);
             JsonFactory jf = new MappingJsonFactory();
             JsonParser jp = jf.createParser(new StringReader(lmsg));
-            Data jsonout = jp.readValueAs(Data.class);
+            Data p1 = jp.readValueAs(Data.class);
 
-            //Print the raw json strig before demarshalling
-            System.out.println("-----------Start of Plain String ----");
-            System.out.println(lmsg);
-            System.out.println("-----------Start of Return ----------");
+            JsonFactory jfactory = new MappingJsonFactory();
+            jp = jfactory.createParser(new StringReader(lmsg));
+            Data p2 = jp.readValueAs(Data.class);
 
-            //Demarshalled JSON from root Pojo
-            System.out.println("-----------Start of JSON Return ------");
-            System.out.println(jsonout);
-            System.out.println("---------End of JSON Return " + "-----");
+            System.out.println("Raw String --> " + lmsg);
+            System.out.println("--------------------------------------------------------------------------------");
+            System.out.println(p1.toString());
+            System.out.println("--------------------------------------------------------------------------------");
+            System.out.println(p2.toString());
+
+            JsonFactory jf2 = new MappingJsonFactory();
+            JsonParser jp2 = jf2.createParser(new StringReader(lmsg));
+            JsonNode root = jp2.readValueAsTree();
+            root.getNodeType();
+            System.out.println(root);
+            System.out.println("--------------------------------------------------------------------------------");
+
+            JsonParser jp4 = mapper.getFactory().createParser(lmsg);
+            Data ob = jp4.readValueAs(Data.class);
+            System.out.println(ob.toString());
+            System.out.println("wtf");
+            System.out.println("--------------------------------------------------------------------------------");
+
+            System.out.println("json Node");
+            JsonFactory jf3 = new MappingJsonFactory();
+            JsonParser jp3 = jf3.createParser(new StringReader(lmsg));
+            JsonNode root2 = jp3.readValueAsTree();
+            Data hostreply = mapper.treeToValue(root2, Data.class);
+
+            System.out.println
+                    ("-----------Start of Return ---------------------------------------------------------------------");
+            System.out.println("TREE");
+            System.out.println(hostreply.toString());
+
+            System.out.println
+                    ("---------End of Return -----------------------------------------------------------------------");
 
         } catch (JsonMappingException e) {
             System.err.println(e);
