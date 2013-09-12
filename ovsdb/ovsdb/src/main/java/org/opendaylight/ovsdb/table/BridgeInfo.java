@@ -1,46 +1,71 @@
 package org.opendaylight.ovsdb.table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class BridgeInfo {
-    @JsonProperty("new")
-    private New unique;
 
-    private New getKey() {
-        return unique;
+    @JsonProperty("name")
+    private String name;
+    @JsonProperty("ports")
+    private Object ports;
+    @JsonProperty("fail_mode")
+    private Object fail_mode;
+    @JsonProperty("controller")
+    private Object controller;
+    @JsonProperty("external_ids")
+    private Object external_ids;
+
+    @JsonProperty("name")
+    public String getName() {
+        return name;
     }
 
-    private void setNew(New unique) {
-        this.unique = unique;
+    @JsonProperty("name")
+    public void setName(String name) {
+        this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "BridgeInfo [new=" + unique + "]";
+    @JsonProperty("ports")
+    public Object getPorts() {
+        return ports;
     }
 
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((unique == null) ? 0 : unique.hashCode());
-        return result;
+    @JsonProperty("ports")
+    public void setPorts(Object ports) {
+        this.ports = ports;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        BridgeInfo other = (BridgeInfo) obj;
-        if (unique == null) {
-            if (other.unique != null)
-                return false;
-        } else if (!unique.equals(other.unique))
-            return false;
-        return true;
+    @JsonProperty("fail_mode")
+    public Object getFail_mode() {
+        return fail_mode;
+    }
+
+    @JsonProperty("fail_mode")
+    public void setFail_mode(Object fail_mode) {
+        this.fail_mode = fail_mode;
+    }
+
+    @JsonProperty("controller")
+    public Object getController() {
+        return controller;
+    }
+
+    @JsonProperty("controller")
+    public void setController(Object controller) {
+        this.controller = controller;
+    }
+
+    @JsonProperty("external_ids")
+    public Object getexternal_ids() {
+        return external_ids;
+    }
+
+    @JsonProperty("external_ids")
+    public void setexternal_ids(Object external_ids) {
+        this.external_ids = external_ids;
     }
 }

@@ -22,18 +22,23 @@ public class Data {
     public int Id() {
         return id;
     }
+
     public void setId(int id) {
         this.id = id;
     }
+
     public Object getError() {
         return error;
     }
+
     public void setError(Object error) {
         this.error = error;
     }
+
     public Results getResults() {
         return Results;
     }
+
     public void setResults(Results results) {
         this.Results = results;
     }
@@ -52,21 +57,21 @@ public class Data {
     //Has to be Static inner-classes dont map w/o it per Tatu in #jackson
     public static class Results {
         @JsonProperty("syntax")
-        private String syntax;
+        public String syntax;
         @JsonProperty("details")
-        private String details;
+        public String details;
         @JsonProperty("Port")
-        private Map<String, Port> port;
+        public Map<String, Port> port;
         @JsonProperty("Open_vSwitch")
-        private Map<String, OvsTable> ovstable;
+        public Map<String, OvsTable> ovstable;
         @JsonProperty("Controller")
-        private Map<String, Controller> controller;
+        public Map<String, Controller> controller;
         @JsonProperty("Interface")
-        private Map<String, Interface> interfaces;
+        public Map<String, Interface> interfaces;
         @JsonProperty("Bridge")
-        private Map<String, Bridge> bridge;
+        public Map<String, Bridge> bridge;
         @JsonProperty("Manager")
-        private Map<String, Manager> manager;
+        public Map<String, Manager> manager;
 
         public Map<String, Bridge> getBridge() {
             return bridge;
@@ -84,11 +89,11 @@ public class Data {
             this.manager = manager;
         }
 
-        public Map<String,Port> getPort() {
+        public Map<String, Port> getPort() {
             return port;
         }
 
-        public void setPort(Map<String,Port> port) {
+        public void setPort(Map<String, Port> port) {
             this.port = port;
         }
 
@@ -146,37 +151,5 @@ public class Data {
                     '}';
         }
 
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (!(o instanceof Results)) return false;
-
-            Results results = (Results) o;
-
-            if (!bridge.equals(results.bridge)) return false;
-            if (!controller.equals(results.controller)) return false;
-            if (!details.equals(results.details)) return false;
-            if (!interfaces.equals(results.interfaces)) return false;
-            if (!manager.equals(results.manager)) return false;
-            if (!ovstable.equals(results.ovstable)) return false;
-            if (!port.equals(results.port)) return false;
-            if (!syntax.equals(results.syntax)) return false;
-
-            return true;
-        }
-
-        @Override
-        public int hashCode() {
-            int result = syntax.hashCode();
-            result = 31 * result + details.hashCode();
-            result = 31 * result + port.hashCode();
-            result = 31 * result + ovstable.hashCode();
-            result = 31 * result + controller.hashCode();
-            result = 31 * result + interfaces.hashCode();
-            result = 31 * result + bridge.hashCode();
-            result = 31 * result + manager.hashCode();
-            return result;
-        }
     }
 }

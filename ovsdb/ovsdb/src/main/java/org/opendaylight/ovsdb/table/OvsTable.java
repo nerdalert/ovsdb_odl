@@ -1,63 +1,31 @@
 package org.opendaylight.ovsdb.table;
 
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class OvsTable {
 
-    Map<String, OvsTableInfo> ovstableInfo = new HashMap<String, OvsTableInfo>();
+    private OvsTableInfo ovsInfo;
 
-    public Map<String, OvsTableInfo> getOvstableInfo() {
-        return ovstableInfo;
+    private OvsTableInfo getOvsTableInfo() {
+        return ovsInfo;
     }
 
-    public void setOvstableInfo(Map<String, OvsTableInfo> ovstableInfo) {
-        this.ovstableInfo = ovstableInfo;
-    }
-
-    @JsonAnySetter
-    public void add(String key, OvsTableInfo value) {
-        ovstableInfo.put(key, value);
-    }
-
-    @JsonAnyGetter
-    public Map<String, OvsTableInfo> getProperties() {
-        return ovstableInfo;
+    private void setNew(OvsTableInfo ovsInfo) {
+        this.ovsInfo = ovsInfo;
     }
 
     @Override
     public String toString() {
-        return "OvsTable [ovstableInfo=" + ovstableInfo + "]";
-    }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result
-                + ((ovstableInfo == null) ? 0 : ovstableInfo.hashCode());
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        OvsTable other = (OvsTable) obj;
-        if (ovstableInfo == null) {
-            if (other.ovstableInfo != null)
-                return false;
-        } else if (!ovstableInfo.equals(other.ovstableInfo))
-            return false;
-        return true;
+        return "OvsTable{" +
+                "[OvsTable.class getBridges = " + ovsInfo.getBridges()
+                .toString() + "\n" +
+                "[OvsTable.class getCur_cfg= " + ovsInfo.getCur_cfg()
+                .toString() + "\n" +
+                "[OvsTable.class getOvs_version = " + ovsInfo.getOvs_version
+                ().toString() + "\n" +
+                "[OvsTable.class getManager_options = " + ovsInfo
+                .getManager_options().toString() + "\n" +
+                '}';
     }
 }

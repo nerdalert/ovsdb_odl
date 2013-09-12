@@ -3,44 +3,42 @@ package org.opendaylight.ovsdb.table;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ManagerInfo {
-    @JsonProperty("new")
-    private New unique;
 
-    private New getNew() {
-        return unique;
+    @JsonProperty("target")
+    private String target;
+    @JsonProperty("is_connected")
+    private Boolean is_connected;
+    @JsonProperty("external_ids")
+    private Object external_ids;
+
+    @JsonProperty("is_connected")
+    public Boolean getIs_connected() {
+        return is_connected;
     }
 
-    private void setNew(New unique) {
-        this.unique = unique;
+    @JsonProperty("is_connected")
+    public void setIs_connected(Boolean is_connected) {
+        this.is_connected = is_connected;
     }
 
-    @Override
-    public String toString() {
-        return "ManagerInfo [new=" + unique + "]";
+    @JsonProperty("target")
+    public String getTarget() {
+        return target;
     }
 
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((unique == null) ? 0 : unique.hashCode());
-        return result;
+    @JsonProperty("target")
+    public void setTarget(String target) {
+        this.target = target;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        ManagerInfo other = (ManagerInfo) obj;
-        if (unique == null) {
-            if (other.unique != null)
-                return false;
-        } else if (!unique.equals(other.unique))
-            return false;
-        return true;
+    @JsonProperty("external_ids")
+    public Object getexternal_ids() {
+        return external_ids;
     }
+
+    @JsonProperty("external_ids")
+    public void setexternal_ids(Object external_ids) {
+        this.external_ids = external_ids;
+    }
+
 }

@@ -1,47 +1,62 @@
 package org.opendaylight.ovsdb.table;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class InterfaceInfo {
 
-    @JsonProperty("new")
-    private New unique;
+    @JsonProperty("name")
+    private String name;
+    // @JsonProperty("type")
+    private String type;
+    @JsonProperty("options")
+    private Object options;
+    @JsonProperty("external_ids")
+    private Object external_ids;
 
-    private New getNew() {
-        return unique;
+    @JsonProperty("name")
+    public String getName() {
+        return name;
     }
 
-    private void setNew(New unique) {
-        this.unique = unique;
+    @JsonProperty("name")
+    public void setName(String name) {
+        this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "InterfaceInfo [new=" + unique + "]";
+    //  @JsonProperty("type")
+    public String getType() {
+        return type;
     }
 
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((unique == null) ? 0 : unique.hashCode());
-        return result;
+    //  @JsonProperty("type")
+    public void setType(String type) {
+        this.type = type;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        InterfaceInfo other = (InterfaceInfo) obj;
-        if (unique == null) {
-            if (other.unique != null)
-                return false;
-        } else if (!unique.equals(other.unique))
-            return false;
-        return true;
+    @JsonProperty("options")
+    public Object getOptions() {
+        return options;
     }
+
+    @JsonProperty("options")
+    public void setOptisons(Object options) {
+        this.options = options;
+    }
+
+    @JsonProperty("external_ids")
+    public Object getexternal_ids() {
+        return external_ids;
+    }
+
+    @JsonProperty("external_ids")
+    public void setexternal_ids(Object external_ids) {
+        this.external_ids = external_ids;
+    }
+
 }

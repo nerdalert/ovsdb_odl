@@ -1,47 +1,89 @@
 package org.opendaylight.ovsdb.table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.ArrayList;
+import java.util.List;
+
+//@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class PortInfo {
 
-    @JsonProperty("new")
-    private New unique;
+    @JsonProperty("trunks")
+    private Object trunks = new ArrayList<String>();
+    @JsonProperty("interfaces")
+    private List<String> interfaces = new ArrayList<String>();
+    @JsonProperty("name")
+    private String name;
+    @JsonProperty("tag")
+    private Object tag = new ArrayList<String>();
+    @JsonProperty("external_ids")
+    private Object external_ids;
 
-    private New getNew() {
-        return unique;
+
+    @JsonProperty("trunks")
+    public Object getTrunks() {
+        return trunks;
     }
 
-    private void setNew(New unique) {
-        this.unique = unique;
+    @JsonProperty("trunks")
+    public void setTrunks(Object trunks) {
+        this.trunks = trunks;
     }
 
-    @Override
-    public String toString() {
-        return "PortInfo [new=" + unique + "]";
+    public PortInfo withTrunks(List<String> trunks) {
+        this.trunks = trunks;
+        return this;
     }
 
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((unique == null) ? 0 : unique.hashCode());
-        return result;
+    @JsonProperty("interfaces")
+    public List<String> getInterfaces() {
+        return interfaces;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        PortInfo other = (PortInfo) obj;
-        if (unique == null) {
-            if (other.unique != null)
-                return false;
-        } else if (!unique.equals(other.unique))
-            return false;
-        return true;
+    @JsonProperty("interfaces")
+    public void setInterfaces(List<String> interfaces) {
+        this.interfaces = interfaces;
+    }
+
+    @JsonProperty("name")
+    public String getName() {
+        return name;
+    }
+
+    @JsonProperty("name")
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public PortInfo withName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    @JsonProperty("tag")
+    public Object getTag() {
+        return tag;
+    }
+
+    @JsonProperty("tag")
+    public void setTag(Object tag) {
+        this.tag = tag;
+    }
+
+    public PortInfo withTag(Object tag) {
+        this.tag = tag;
+        return this;
+    }
+
+    @JsonProperty("external_ids")
+    public Object getexternal_ids() {
+        return external_ids;
+    }
+
+    @JsonProperty("external_ids")
+    public void setexternal_ids(Object external_ids) {
+        this.external_ids = external_ids;
     }
 }
