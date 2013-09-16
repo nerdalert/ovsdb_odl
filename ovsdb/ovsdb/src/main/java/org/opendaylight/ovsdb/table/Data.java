@@ -3,9 +3,10 @@ package org.opendaylight.ovsdb.table;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.apache.commons.lang.builder.ToStringBuilder;
 
+import java.util.ArrayList;
 import java.util.Map;
-
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 //@JsonInclude(JsonInclude.Include.NON_NULL)
@@ -16,15 +17,26 @@ public class Data {
     @JsonProperty("error")
     private Object error;
     @JsonProperty("result")
-    private Results Results;
+    private Results results;
+    @JsonProperty("method")
+    private String method;
+    @JsonProperty("params")
+    private ArrayList<Results> params;
 
+    public String getMethod() {
+        return method;
+    }
 
-    public int Id() {
-        return id;
+    public void setMethod(String method) {
+        this.method = method;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public Object getError() {
@@ -36,20 +48,24 @@ public class Data {
     }
 
     public Results getResults() {
-        return Results;
+        return results;
     }
 
     public void setResults(Results results) {
-        this.Results = results;
+        this.results = results;
+    }
+
+    public ArrayList<Results> getParams() {
+        return params;
+    }
+
+    public void setParams(ArrayList<Results> params) {
+        this.params = params;
     }
 
     @Override
     public String toString() {
-        return "Data{" +
-                "id=" + id +
-                ", error=" + error +
-                ", Results=" + Results +
-                '}';
+        return ToStringBuilder.reflectionToString(this);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -61,64 +77,66 @@ public class Data {
         @JsonProperty("details")
         public String details;
         @JsonProperty("Port")
-        public Map<String, Port> port;
+        public Map<String, Port> portTable;
         @JsonProperty("Open_vSwitch")
-        public Map<String, OvsTable> ovstable;
+        public Map<String, OvsTable> ovsTable;
         @JsonProperty("Controller")
-        public Map<String, Controller> controller;
+        public Map<String, Controller> controllerTable;
         @JsonProperty("Interface")
-        public Map<String, Interface> interfaces;
+        public Map<String, Interface> interfacesTable;
         @JsonProperty("Bridge")
-        public Map<String, Bridge> bridge;
+        public Map<String, Bridge> bridgeTable;
         @JsonProperty("Manager")
-        public Map<String, Manager> manager;
+        public Map<String, Manager> managerTable;
 
-        public Map<String, Bridge> getBridge() {
-            return bridge;
+        public Map<String, Bridge> getBridgeTable() {
+            return bridgeTable;
         }
 
-        public void setBridge(Map<String, Bridge> bridge) {
-            this.bridge = bridge;
+        public void setBridgeTable(Map<String, Bridge> bridgeTable) {
+            this.bridgeTable = bridgeTable;
         }
 
-        public Map<String, Manager> getManager() {
-            return manager;
+        public Map<String, Manager> getManagerTable() {
+            return managerTable;
         }
 
-        public void setManager(Map<String, Manager> manager) {
-            this.manager = manager;
+        public void setManagerTable(Map<String, Manager> managerTable) {
+            this.managerTable = managerTable;
         }
 
-        public Map<String, Port> getPort() {
-            return port;
+        public Map<String, Port> getPortTable() {
+            return portTable;
         }
 
-        public void setPort(Map<String, Port> port) {
-            this.port = port;
+        public void setPortTable(Map<String, Port> portTable) {
+            this.portTable = portTable;
         }
 
-        public Map<String, Controller> getController() {
-            return controller;
+        public Map<String, Controller> getControllerTable() {
+            return controllerTable;
         }
 
-        public void setController(Map<String, Controller> controller) {
-            this.controller = controller;
+        public void setControllerTable(Map<String, Controller> controllerTable) {
+            this.controllerTable = controllerTable;
         }
 
+        @JsonProperty("Interface")
         public Map<String, Interface> getInterface() {
-            return interfaces;
+            return interfacesTable;
         }
 
+        @JsonProperty("Interface")
         public void setInterface(Map<String, Interface> interfaces) {
-            this.interfaces = interfaces;
+            this.interfacesTable = interfaces;
         }
 
         public Map<String, OvsTable> getOvsTable() {
-            return ovstable;
+            return ovsTable;
         }
 
         public void setOvsTable(Map<String, OvsTable> ovstable) {
-            this.ovstable = ovstable;
+            this.ovsTable = ovstable;
         }
 
         public String getSyntax() {
@@ -139,17 +157,7 @@ public class Data {
 
         @Override
         public String toString() {
-            return "Results{" +
-                    "syntax='" + syntax + '\'' +
-                    ", details='" + details + '\'' +
-                    ", port=" + port +
-                    ", ovstable=" + ovstable +
-                    ", controller=" + controller +
-                    ", interfaces=" + interfaces +
-                    ", bridge=" + bridge +
-                    ", manager=" + manager +
-                    '}';
+            return ToStringBuilder.reflectionToString(this);
         }
-
     }
 }
