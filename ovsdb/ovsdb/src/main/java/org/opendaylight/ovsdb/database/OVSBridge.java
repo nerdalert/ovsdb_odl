@@ -3,7 +3,7 @@ package org.opendaylight.ovsdb.database;
 
 import org.opendaylight.ovsdb.internal.Connection;
 
-import java.util.*;
+import java.util.Map;
 
 public class OVSBridge {
 

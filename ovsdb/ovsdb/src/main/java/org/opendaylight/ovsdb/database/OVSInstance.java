@@ -2,7 +2,6 @@ package org.opendaylight.ovsdb.database;
 
 
 import io.netty.channel.Channel;
-
 import org.opendaylight.ovsdb.internal.Connection;
 import org.opendaylight.ovsdb.internal.MessageHandler;
 import org.opendaylight.ovsdb.internal.MessageMapper;

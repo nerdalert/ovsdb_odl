@@ -36,10 +36,10 @@ public class Port {
 
     @Override
     public String toString() {
-        return ToStringBuilder.reflectionToString(this);
+        return portData.getName();
     }
 
-    public class PortData {
+    public static class PortData extends Port {
 
         @JsonProperty("trunks")
         public Object trunks = new ArrayList<String>();

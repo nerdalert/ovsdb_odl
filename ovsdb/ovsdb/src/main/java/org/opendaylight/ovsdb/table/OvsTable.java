@@ -46,7 +46,7 @@ public class OvsTable {
         @JsonProperty("cur_cfg")
         private Integer cur_cfg;
         @JsonProperty("manager_options")
-        private List<String> manager_options = new ArrayList<String>();
+        private ArrayList manager_options = new ArrayList<String>();
         @JsonProperty("bridges")
         private Object bridges;
         @JsonProperty("external_ids")
@@ -88,7 +88,7 @@ public class OvsTable {
         }
 
         @JsonProperty("manager_options")
-        public void setManager_options(List<String> manager_options) {
+        public void setManager_options(ArrayList manager_options) {
             this.manager_options = manager_options;
         }
 

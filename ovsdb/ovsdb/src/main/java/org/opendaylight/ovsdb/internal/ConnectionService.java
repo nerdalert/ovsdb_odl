@@ -1,30 +1,13 @@
 package org.opendaylight.ovsdb.internal;
 
-import java.net.InetAddress;
-import java.net.Socket;
-
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
-
-import com.googlecode.jsonrpc4j.JsonRpcClient;
-
-
 import io.netty.bootstrap.Bootstrap;
-import io.netty.bootstrap.ChannelFactory;
-import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
-import io.netty.channel.local.LocalServerChannel;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
-import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
-import io.netty.handler.codec.LineBasedFrameDecoder;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
 import io.netty.util.CharsetUtil;
@@ -36,17 +19,22 @@ import org.opendaylight.controller.sal.utils.StatusCode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.net.InetAddress;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
+
+
 /**
  * Represents the openflow plugin component in charge of programming the flows
  * the flow programming and relay them to functional modules above SAL.
  */
-public class ConnectionService implements IPluginInConnectionService, IConnectionServiceInternal
-{
-    protected static final Logger logger = LoggerFactory
-            .getLogger(ConnectionService.class);
+public class ConnectionService implements IPluginInConnectionService, IConnectionServiceInternal {
+    protected static final Logger logger = LoggerFactory.getLogger(ConnectionService.class);
 
     private static final Integer defaultOvsdbPort = 6632;
-    ConcurrentMap <String, Connection> ovsdbConnections;
+    ConcurrentMap<String, Connection> ovsdbConnections;
+
     public void init() {
         ovsdbConnections = new ConcurrentHashMap<String, Connection>();
     }
@@ -55,7 +43,6 @@ public class ConnectionService implements IPluginInConnectionService, IConnectio
      * Function called by the dependency manager when at least one dependency
      * become unsatisfied or when the component is shutting down because for
      * example bundle is being stopped.
-     *
      */
     void destroy() {
     }
@@ -63,7 +50,6 @@ public class ConnectionService implements IPluginInConnectionService, IConnectio
     /**
      * Function called by dependency manager after "init ()" is called and after
      * the services provided by the class are registered in the service registry
-     *
      */
     void start() {
     }
@@ -72,14 +58,13 @@ public class ConnectionService implements IPluginInConnectionService, IConnectio
      * Function called by the dependency manager before the services exported by
      * the component are unregistered, this will be followed by a "destroy ()"
      * calls
-     *
      */
     void stop() {
     }
 
     @Override
     public Status disconnect(Node node) {
-        String identifier = (String)node.getID();
+        String identifier = (String) node.getID();
         Connection connection = ovsdbConnections.get(identifier);
         if (connection != null) {
             ovsdbConnections.remove(identifier);
@@ -104,7 +89,7 @@ public class ConnectionService implements IPluginInConnectionService, IConnectio
         try {
             port = Integer.parseInt(params.get(ConnectionConstants.PORT));
             if (port == 0) port = defaultOvsdbPort;
-        }catch (Exception e) {
+        } catch (Exception e) {
             port = defaultOvsdbPort;
         }
 
@@ -116,21 +101,31 @@ public class ConnectionService implements IPluginInConnectionService, IConnectio
             bootstrap.handler(new ChannelInitializer<SocketChannel>() {
                 @Override
                 public void initChannel(SocketChannel channel) throws Exception {
+
+//                  Add new Handlers here.
+//                  Break out into todo break out into channel Init Class
+//                  new DelimiterBasedFrameDecoder(8192, Delimiters.nulDelimiter());
+//                  channel.pipeline().addLast(new JsonDecoder());
+//                  channel.pipeline().addLast(new JsonDecoder());
+//                  channel.pipeline().addLast("bytesDecoder",new ByteArrayDecoder());
+
                     channel.pipeline().addLast(new StringDecoder(CharsetUtil.UTF_8));
                     channel.pipeline().addLast(new StringEncoder(CharsetUtil.UTF_8));
                     channel.pipeline().addLast("messageHandler", new MessageHandler());
                 }
             });
-
+            logger.debug("1 Channel INIT " + "Identifier=>" + identifier + "Address=>" + address);
             ChannelFuture future = bootstrap.connect(address, port).sync();
 
             Channel channel = future.channel();
-            Connection connection = new Connection(identifier, channel, new JsonRpcClient());
+            //   Connection connection = new Connection(identifier, channel, new JsonRpcClient());
+            logger.debug("2 Channel INIT Future" + "Identifier=>" + identifier + channel + address);
+            Connection connection = new Connection(identifier, channel);
 
             ovsdbConnections.put(identifier, connection);
             return connection.getNode();
 
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
@@ -138,7 +133,7 @@ public class ConnectionService implements IPluginInConnectionService, IConnectio
 
     @Override
     public Connection getConnection(Node node) {
-        String identifier = (String)node.getID();
+        String identifier = (String) node.getID();
         return ovsdbConnections.get(identifier);
     }
 
@@ -149,4 +144,4 @@ public class ConnectionService implements IPluginInConnectionService, IConnectio
     @Override
     public void notifyNodeDisconnectFromMaster(Node arg0) {
     }
-  }
+}
