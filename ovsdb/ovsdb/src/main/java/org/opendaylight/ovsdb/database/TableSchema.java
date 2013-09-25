@@ -1,8 +1,8 @@
 package org.opendaylight.ovsdb.database;
 
-import java.util.Map;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.Map;
 
 public class TableSchema {
     @JsonProperty("columns")

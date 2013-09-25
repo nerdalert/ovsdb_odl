@@ -1,21 +1,22 @@
 package org.opendaylight.ovsdb.table;
 
-import com.fasterxml.jackson.core.JsonFactory;
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.core.*;
 import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import java.io.IOException;
 import java.io.StringReader;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Set;
+import java.util.*;
 
 
-public class DriverTest {
+public class DriverNew {
     public static void main(String[] args) {
 
+        // Lame Test Deserializing Using Jackson.
+        // The Polymorphic Keys Break Much of The Returns
+        // So you are left with Maps until we figure out
+        // how to remap to a Pojo
 
         String jjlmsg = "{\"id\":0,\"error\":null,\"result\":" +
                 "{\"Port\":{\"d97ecd2f-a0f9-495d-8637-e0849f7de291\"" +
@@ -108,7 +109,7 @@ public class DriverTest {
                 "\"interfaces\":[\"uuid\",\"89e67257-b713-4f93-b9af-a80427551972\"],\"name\":\"br1\"," +
                 "\"tag\":[\"set\",[]]}},\"52f4b20f-9667-40a7-ac4b-22745e1caff2\":{\"new\":{\"trunks\":[\"set\",[]],\"interfaces\":[\"uuid\",\"33905368-e18e-4363-a29e-7312268e88bb\"],\"name\":\"vif0\",\"tag\":[\"set\",[]]}},\"a6064640-e0bb-4c8f-a8ab-4ba5a49c6b6a\":{\"new\":{\"trunks\":[\"set\",[]],\"interfaces\":[\"uuid\",\"da6059d2-da62-4135-947d-a41b98f72309\"],\"name\":\"gre1\",\"tag\":[\"set\",[]]}},\"c816ef48-055f-4929-bcc2-fbd6218211dd\":{\"new\":{\"trunks\":[\"set\",[]],\"interfaces\":[\"uuid\",\"472fea0a-2c38-4f7b-8cb5-95f9fcbee79b\"],\"name\":\"br0\",\"tag\":[\"set\",[]]}}},\"Controller\":{\"f0dbada6-838e-47a7-9ddc-2fd74fa5ae9e\":{\"new\":{\"target\":\"tcp:192.168.1.18:6633\",\"is_connected\":false}}},\"Interface\":{\"33905368-e18e-4363-a29e-7312268e88bb\":{\"new\":{\"name\":\"vif0\",\"type\":\"\",\"options\":[\"map\",[]]}},\"89e67257-b713-4f93-b9af-a80427551972\":{\"new\":{\"name\":\"br1\",\"type\":\"internal\",\"options\":[\"map\",[]]}},\"da6059d2-da62-4135-947d-a41b98f72309\":{\"new\":{\"name\":\"gre1\",\"type\":\"gre\",\"options\":[\"map\",[[\"remote_ip\",\"192.168.1.10\"]]]}},\"472fea0a-2c38-4f7b-8cb5-95f9fcbee79b\":{\"new\":{\"name\":\"br0\",\"type\":\"internal\",\"options\":[\"map\",[]]}}},\"Open_vSwitch\":{\"2cfdf9dd-e2a3-46b9-b09d-fbc68f23bc5d\":{\"new\":{\"ovs_version\":\"1.4.3\",\"cur_cfg\":412,\"bridges\":[\"set\",[[\"uuid\",\"424544d3-eba9-412a-8fa6-844767f0ad32\"],[\"uuid\",\"56f04394-7fba-4997-b784-5cf8ff5de1f2\"]]],\"manager_options\":[\"uuid\",\"2928ae71-fc80-4ead-b156-fbd2a97ee308\"]}}},\"Bridge\":{\"424544d3-eba9-412a-8fa6-844767f0ad32\":{\"new\":{\"name\":\"br0\",\"ports\":[\"set\",[[\"uuid\",\"52f4b20f-9667-40a7-ac4b-22745e1caff2\"],[\"uuid\",\"c816ef48-055f-4929-bcc2-fbd6218211dd\"]]],\"controller\":[\"uuid\",\"f0dbada6-838e-47a7-9ddc-2fd74fa5ae9e\"],\"fail_mode\":[\"set\",[]]}},\"56f04394-7fba-4997-b784-5cf8ff5de1f2\":{\"new\":{\"name\":\"br1\",\"ports\":[\"set\",[[\"uuid\",\"a6064640-e0bb-4c8f-a8ab-4ba5a49c6b6a\"],[\"uuid\",\"ff306c93-bdef-4176-a4f3-d02e15654c42\"]]],\"controller\":[\"set\",[]],\"fail_mode\":[\"set\",[]]}}},\"Manager\":{\"2928ae71-fc80-4ead-b156-fbd2a97ee308\":{\"new\":{\"target\":\"ptcp:6634:172.16.58.128\",\"is_connected\":false}}}}}";
 
-        //Port only
+       //Port only
         String vlmsg = "{\"id\":0,\"error\":null," +
                 "\"result\":{\"Port\":{\"ff306c93-bdef-4176-a4f3-d02e15654c42\":{\"new\":{\"trunks\":[\"set\",[]],\"external_ids\":[\"map\",[]],\"interfaces\":[\"uuid\",\"89e67257-b713-4f93-b9af-a80427551972\"],\"name\":\"br1\",\"tag\":[\"set\",[]]}},\"52f4b20f-9667-40a7-ac4b-22745e1caff2\":{\"new\":{\"trunks\":[\"set\",[]],\"external_ids\":[\"map\",[[\"key1\",\"FOO\"]]],\"interfaces\":[\"uuid\",\"33905368-e18e-4363-a29e-7312268e88bb\"],\"name\":\"vif0\",\"tag\":[\"set\",[]]}},\"a6064640-e0bb-4c8f-a8ab-4ba5a49c6b6a\":{\"new\":{\"trunks\":[\"set\",[]],\"external_ids\":[\"map\",[]],\"interfaces\":[\"uuid\",\"da6059d2-da62-4135-947d-a41b98f72309\"],\"name\":\"gre1\",\"tag\":[\"set\",[]]}},\"c816ef48-055f-4929-bcc2-fbd6218211dd\":{\"new\":{\"trunks\":[\"set\",[]],\"external_ids\":[\"map\",[]],\"interfaces\":[\"uuid\",\"472fea0a-2c38-4f7b-8cb5-95f9fcbee79b\"],\"name\":\"br0\",\"tag\":[\"set\",[]]}}}}}";
         //Controller only
@@ -128,7 +129,7 @@ public class DriverTest {
                 "\"result\":{\"Manager\":{\"2928ae71-fc80-4ead-b156-fbd2a97ee308\":{\"new\":{\"target\":\"ptcp:6634:172.16.58.128\",\"is_connected\":false}}}}}\n";
 
         //All Tables w/FOO
-        String knlmsg = "{\"id\":0,\"error\":null," +
+        String olmsg = "{\"id\":0,\"error\":null," +
                 "\"result\":{\"Port\":{\"ff306c93-bdef-4176-a4f3-d02e15654c42" +
                 "\":{\"new\":{\"trunks\":[\"set\",[]]," +
                 "\"external_ids\":[\"map\",[]],\"interfaces\":[\"uuid\"," +
@@ -190,12 +191,12 @@ public class DriverTest {
         String oolmsg = "{\"method\":\"update\",\"id\":null,\"params\":[null," +
                 "{\"Manager\":{\"2928ae71-fc80-4ead-b156-fbd2a97ee308\":{\"old\":{\"is_connected\":false}," +
                 "\"new\":{\"target\":\"ptcp:6634:172.16.58.128\",\"is_connected\":true}}}}]}";
-        ObjectMapper mapper = new ObjectMapper();
 
-        String tlmsg = "{\"Manager\":{\"2928ae71-fc80-4ead-b156-fbd2a97ee308\":{\"old\":{\"is_connected\":false},\"new\":{\"target\":\"ptcp:6634:172.16.58" +
-                ".128\",\"is_connected\":true}}}}]}";
+String tlmsg = "{\"Manager\":{\"2928ae71-fc80-4ead-b156-fbd2a97ee308\":{\"old\":{\"is_connected\":false},\"new\":{\"target\":\"ptcp:6634:172.16.58" +
+        ".128\",\"is_connected\":true}}}}]}";
 
-        String lmsg = "{\"id\":0,\"error\":null,\"result\":{\"Port\":{\"873dbd1b-6a6e-4a0f-9c1c-efce6cd4b566\":{\"new\":{\"trunks\":[\"set\",[]]," +
+        String eelmsg = "{\"id\":0,\"error\":null,\"result\":{\"Port\":{\"873dbd1b-6a6e-4a0f-9c1c-efce6cd4b566\":{\"new\":{\"trunks\":[\"set\",[]]," +
+                "" +
                 "\"interfaces\":[\"uuid\",\"778eb6a5-55c3-4337-9aa4-0bbd8d347a40\"],\"name\":\"del\",\"tag\":[\"set\",[]]}}," +
                 "\"ff306c93-bdef-4176-a4f3-d02e15654c42\":{\"new\":{\"trunks\":[\"set\",[]],\"interfaces\":[\"uuid\"," +
                 "\"89e67257-b713-4f93-b9af-a80427551972\"],\"name\":\"br1\",\"tag\":[\"set\",[]]}}," +
@@ -218,7 +219,23 @@ public class DriverTest {
                 "\"ports\":[\"uuid\",\"873dbd1b-6a6e-4a0f-9c1c-efce6cd4b566\"],\"controller\":[\"set\",[]],\"fail_mode\":[\"set\",[]]}}," +
                 "\"56f04394-7fba-4997-b784-5cf8ff5de1f2\":{\"new\":{\"name\":\"br1\",\"ports\":[\"set\",[[\"uuid\"," +
                 "\"a6064640-e0bb-4c8f-a8ab-4ba5a49c6b6a\"],[\"uuid\",\"ff306c93-bdef-4176-a4f3-d02e15654c42\"]]],\"controller\":[\"set\",[]],\"fail_mode\":[\"set\",[]]}},\"424544d3-eba9-412a-8fa6-844767f0ad32\":{\"new\":{\"name\":\"br0\",\"ports\":[\"set\",[[\"uuid\",\"52f4b20f-9667-40a7-ac4b-22745e1caff2\"],[\"uuid\",\"c816ef48-055f-4929-bcc2-fbd6218211dd\"]]],\"controller\":[\"uuid\",\"f0dbada6-838e-47a7-9ddc-2fd74fa5ae9e\"],\"fail_mode\":[\"set\",[]]}}},\"Manager\":{\"2928ae71-fc80-4ead-b156-fbd2a97ee308\":{\"new\":{\"target\":\"ptcp:6634:172.16.58.128\",\"is_connected\":false}}}}}";
+
+        String lmsg = "{\"id\":0,\"error\":null,\"result\":{\"Port\":{\"fe3c89fd-2ff3-44d8-9f27-f9c7ac2a693d\":{\"new\":{\"trunks\":[\"set\",[]]," +
+                "\"external_ids\":[\"map\",[]],\"interfaces\":[\"uuid\",\"88ae29fb-8c91-41a9-a14f-a74126e790c0\"],\"name\":\"br0\"," +
+                "\"tag\":[\"set\",[]]}},\"f6018e7a-7ca5-4e72-a744-a9b434f47011\":{\"new\":{\"trunks\":[\"set\",[]],\"external_ids\":[\"map\"," +
+                "[[\"key1\",\"foo\"]]],\"interfaces\":[\"uuid\",\"13548b08-dca3-4d4b-9e9b-f50c237dcb9e\"],\"name\":\"vif0\",\"tag\":[\"set\"," +
+                "[]]}}},\"Interface\":{\"88ae29fb-8c91-41a9-a14f-a74126e790c0\":{\"new\":{\"name\":\"br0\",\"type\":\"internal\"," +
+                "\"options\":[\"map\",[]]}},\"13548b08-dca3-4d4b-9e9b-f50c237dcb9e\":{\"new\":{\"name\":\"vif0\",\"type\":\"\"," +
+                "\"options\":[\"map\",[]]}}},\"Open_vSwitch\":{\"987c42d0-eab0-43d9-a32b-4246973706c2\":{\"new\":{\"ovs_version\":\"1.4.3\"," +
+                "\"cur_cfg\":7,\"bridges\":[\"uuid\",\"788de61c-0e4f-43d8-a068-259e75aabbba\"],\"manager_options\":[\"set\",[]]}}}," +
+                "\"Bridge\":{\"788de61c-0e4f-43d8-a068-259e75aabbba\":{\"new\":{\"name\":\"br0\",\"ports\":[\"set\",[[\"uuid\"," +
+                "\"f6018e7a-7ca5-4e72-a744-a9b434f47011\"],[\"uuid\",\"fe3c89fd-2ff3-44d8-9f27-f9c7ac2a693d\"]]],\"controller\":[\"set\",[]]}}}}}";
+
         try {
+
+
+            ObjectMapper mapper = new ObjectMapper();
+           // mapper.configure(DeserializationFeature.UNWRAP_ROOT_VALUE, true);
 
             System.out.println("--------------------------------------------------------------------------------");
             System.out.println("Raw String ====" + lmsg);
@@ -234,22 +251,23 @@ public class DriverTest {
             //Single Table out
             System.out.println("Port Table Only ==> " + hostreply.getResults().getPortTable());
             System.out.println("--------------------------------------------------------------------------------");
-            System.out.println("Bridge Table Only ==> " + hostreply.getResults().getBridgeTable());
+            System.out.println("Port Table Only ==> " + hostreply.getResults().getBridgeTable());
 
-            System.out.println("--------------------------------------------------------------------------------");
+            System.out.println("----------- Return UUID to Port Name ---------------------------------------------------------------------");
             int i_port = 1;
             Set portTable = hostreply.getResults().getPortTable().entrySet();
             Iterator itport = portTable.iterator();
             while(itport.hasNext()) {
                 System.out.println("Port Table Row " + i_port++ + "==> " + itport.next());
             }
-            System.out.println("--------------------------------------------------------------------------------");
+            System.out.println("------------Port UUID List---------------------------------------------------------");
             //Get Port UUIDs
             Set<String> portuuids = hostreply.getResults().getPortTable().keySet();
             System.out.println("Port UUIDs ==> " + portuuids);
-            System.out.println("--------------------------------------------------------------------------------");
+            System.out.println("-----------Bridge UUID List (Keys)---------------------------------------------------------------------");
             //Get Bridge UUIDs
             System.out.println("Bridge UUIDs ==> " + hostreply.getResults().getBridgeTable().keySet());
+            System.out.println("-----------Bridge Data Map (Values)---------------------------------------------------------------------");
             System.out.println("Bridge UUIDs ==> " + hostreply.getResults().getBridgeTable().values());
             System.out.println("--------------------------------------------------------------------------------");
             //Get Hash
@@ -257,11 +275,53 @@ public class DriverTest {
             Set bridgeTable = hostreply.getResults().getBridgeTable().entrySet();
             Iterator itbridge = bridgeTable.iterator();
             while(itbridge.hasNext()) {
-                System.out.println("Bridge Table Row " + i_bridge++ + "==> " + itbridge.next());
+                System.out.println("Port Table Row " + i_bridge++ + "==> " + itbridge.next());
             }
             System.out.println("--------------------------------------------------------------------------------");
+            System.out.println(hostreply.getResults().portTable.toString());
+            String gport = hostreply.getResults().portTable.toString();
 
 
+             String[] ports = gport.split(",");
+             List<String> plist = new ArrayList<String>();
+            for(String port : ports) {
+                plist.add(port);
+            }
+            System.out.println(plist.getClass());
+
+            ArrayList portuuid = new ArrayList(hostreply.getResults().getPortTable().keySet());
+            ArrayList pname = new ArrayList(hostreply.getResults().getPortTable().values());
+
+            System.out.println("--------------------------------------------------------------------------------");
+
+            System.out.println("----------- Return UUID to Port Name Map ---------------------------------------------------------------------");
+
+
+            Iterator itport2 = portTable.iterator();
+            while(itport2.hasNext()) {
+                System.out.println( itport2.next());
+            }
+
+            System.out.println("----------- UUID String --------------------");
+            Map<String, Port> portTable2 = hostreply.getResults().getPortTable();
+
+            for (String key : portTable2.keySet()) {
+                System.out.println("Parsed Keys = " + key);
+            }
+
+            System.out.println("----------- Port Name String ---------------");
+            Map<String, Port> portTable3 = hostreply.getResults().getPortTable();
+
+            for (Port value : portTable3.values()) {
+                System.out.println("Parsed Values = " + value);
+            }
+
+            System.out.println("--------------------------------------------------------------------------------");
+            //Get Bridge UUIDs
+            System.out.println("Bridge UUIDs ==> " + hostreply.getResults().getBridgeTable().keySet());
+            System.out.println("Bridge UUIDs ==> " + hostreply.getResults().getBridgeTable().values());
+
+            System.out.println("--------------------------------------------------------------------------------");
 
         } catch (JsonMappingException e) {
             System.err.println(e);

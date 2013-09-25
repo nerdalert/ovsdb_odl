@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-//@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Data {
 
     @JsonProperty("id")
@@ -155,9 +155,9 @@ public class Data {
             this.details = details;
         }
 
-        @Override
-        public String toString() {
-            return ToStringBuilder.reflectionToString(this);
-        }
+//        @Override
+//        public String toString() {
+//            return ToStringBuilder.reflectionToString(this);
+//        }
     }
 }

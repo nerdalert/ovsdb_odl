@@ -39,11 +39,11 @@ public class Interface {
     @JsonIgnoreProperties(ignoreUnknown = true)
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-    public class InterfaceData {
+    public static class InterfaceData {
 
         @JsonProperty("name")
         private String name;
-        // @JsonProperty("type")
+        @JsonProperty("type")
         private String type;
         @JsonProperty("options")
         private Object options;

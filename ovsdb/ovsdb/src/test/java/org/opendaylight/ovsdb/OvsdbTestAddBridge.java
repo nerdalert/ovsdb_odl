@@ -24,8 +24,8 @@ public class OvsdbTestAddBridge {
         connectionService.init();
         String identifier = "TEST";
         Map<ConnectionConstants, String> params = new HashMap<ConnectionConstants, String>();
-        params.put(ConnectionConstants.ADDRESS, "192.168.153.128");
-        params.put(ConnectionConstants.PORT, "6634");
+        params.put(ConnectionConstants.ADDRESS, "172.16.58.131");
+        params.put(ConnectionConstants.PORT, "6632");
 
         Node node = connectionService.connect(identifier, params);
         if(node == null){

@@ -10,9 +10,9 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 
-public class EchoRequestPojo {
+public class EchoRequest {
 
-    public EchoRequestPojo() {
+    public EchoRequest() {
         this.id = "echo";
         this.params = params;
         this.method = "echo";
@@ -57,7 +57,7 @@ public class EchoRequestPojo {
 
     @Override
     public String toString() {
-        return "EchoRequestPojo{" +
+        return "EchoRequest{" +
                 "method='" + method + '\'' +
                 ", params=" + params +
                 ", id='" + id + '\'' +
