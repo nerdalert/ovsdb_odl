@@ -8,8 +8,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+<<<<<<< HEAD
 
 
+=======
+//import com.googlecode.jsonrpc4j.JsonRpcClient;
+//import com.googlecode.jsonrpc4j.JsonRpcClient.RequestListener;
+
+>>>>>>> 5fc89136202044b915348a2f20d7e56c6ce3a399
 public class Connection {
     private Node node;
     private String identifier;
@@ -39,6 +45,10 @@ public class Connection {
 
     private static final Logger logger = LoggerFactory.getLogger(Connection.class);
 
+<<<<<<< HEAD
+=======
+    //public Connection(String identifier, Channel channel, JsonRpcClient rpcClient) {
+>>>>>>> 5fc89136202044b915348a2f20d7e56c6ce3a399
     public Connection(String identifier, Channel channel) {
 
         super();
