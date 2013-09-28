@@ -4,10 +4,10 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
-<<<<<<< HEAD
-=======
+
+
 import org.opendaylight.ovsdb.table.Data;
->>>>>>> 5fc89136202044b915348a2f20d7e56c6ce3a399
+
 import org.opendaylight.ovsdb.table.EchoReply;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,12 +30,8 @@ public class MessageHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-<<<<<<< HEAD
-        logger.info("ChannRead ==> " + msg.toString());
-=======
->>>>>>> 5fc89136202044b915348a2f20d7e56c6ce3a399
 
-        logger.debug("==JSON Inbound Message To ChannelRead ==>" + msg);
+        logger.info("ChannRead ==> " + msg.toString());
         JsonNode jsonNode;
         ObjectMapper mapper = new ObjectMapper();
         String strmsg = msg.toString();
@@ -53,7 +49,7 @@ public class MessageHandler extends ChannelInboundHandlerAdapter {
                 JsonNode echoReplyJnode = mapper.valueToTree(echoreply);
                 // The Following String is what the Pojo Sends
                 // String reply = "{\"result\":[], \"id\":\"echo\"}";
-<<<<<<< HEAD
+
                 logger.debug("Echo Reply DP ==>" + msg);
                 ctx.writeAndFlush(echoReplyJnode.toString());
             }
@@ -61,7 +57,8 @@ public class MessageHandler extends ChannelInboundHandlerAdapter {
     }
 
 
-=======
+
+/*
                 logger.debug("==Echo Reply to the Echo Request from DP ==>>" + msg);
                 ctx.writeAndFlush(echoReplyJnode.toString());
             }
@@ -101,8 +98,9 @@ public class MessageHandler extends ChannelInboundHandlerAdapter {
             }
         }
     }
+*/
 
->>>>>>> 5fc89136202044b915348a2f20d7e56c6ce3a399
+
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
         ctx.flush();

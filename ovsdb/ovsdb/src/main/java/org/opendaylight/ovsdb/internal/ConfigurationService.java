@@ -1,10 +1,8 @@
 package org.opendaylight.ovsdb.internal;
 
 
-<<<<<<< HEAD
+
 import io.netty.buffer.ByteBufAllocator;
-=======
->>>>>>> 5fc89136202044b915348a2f20d7e56c6ce3a399
 import io.netty.channel.Channel;
 import org.eclipse.osgi.framework.console.CommandProvider;
 import org.opendaylight.controller.sal.core.Node;
@@ -104,27 +102,26 @@ public class ConfigurationService implements IPluginInBridgeDomainConfigService,
 
             logger.debug("Configurations Service 2" + connection);
             Channel channel = connection.getChannel();
-<<<<<<< HEAD
 
-=======
+
+
             //Commented until Truncated Replies are Resolved
             //OVSInstance instance = OVSInstance.monitorOVS(connection);
->>>>>>> 5fc89136202044b915348a2f20d7e56c6ce3a399
+
             String monitor = ("{\"method\":\"monitor\",\"id\":0,\"params\":[\"Open_vSwitch\",null,{\"Port\":{\"columns\":[\"external_ids\"," +
                     "\"interfaces\"," +
                     "\"name\",\"tag\",\"trunks\"]},\"Controller\":{\"columns\":[\"is_connected\",\"target\"]},\"Interface\":{\"columns\":[\"name\"," +
                     "\"options\"," +
                     "\"type\"]},\"Open_vSwitch\":{\"columns\":[\"bridges\",\"cur_cfg\",\"manager_options\",\"ovs_version\"]}," +
                     "\"Manager\":{\"columns\":[\"is_connected\",\"target\"]},\"Bridge\":{\"columns\":[\"controller\",\"name\",\"ports\"]}}]}");
-<<<<<<< HEAD
+
             //  channel.config().getAllocator().buffer(64000);
             ByteBufAllocator alloc = channel.alloc();
 
             channel.writeAndFlush(monitor);
             logger.debug("COnfigurationService Read => " + channel.pipeline().read().toString());
-=======
             channel.writeAndFlush(monitor);
->>>>>>> 5fc89136202044b915348a2f20d7e56c6ce3a399
+
 
 /*          Commented until Truncated Replies are Resolved
             connection.sendMessage(monitor);

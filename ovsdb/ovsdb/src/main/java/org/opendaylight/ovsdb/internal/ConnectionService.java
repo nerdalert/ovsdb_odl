@@ -1,12 +1,12 @@
 package org.opendaylight.ovsdb.internal;
 
 import io.netty.bootstrap.Bootstrap;
-<<<<<<< HEAD
+
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
-=======
+
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -15,7 +15,7 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.string.StringDecoder;
->>>>>>> 5fc89136202044b915348a2f20d7e56c6ce3a399
+
 import io.netty.handler.codec.string.StringEncoder;
 import io.netty.util.CharsetUtil;
 import org.opendaylight.controller.sal.connection.ConnectionConstants;
@@ -112,17 +112,14 @@ public class ConnectionService implements IPluginInConnectionService, IConnectio
                 public void initChannel(SocketChannel channel) throws Exception {
 
 //                  Add new Handlers here.
-<<<<<<< HEAD
+
                     channel.pipeline().addLast(new JsonDecoder());
-=======
+
 //                  Break out into todo break out into channel Init Class
-//                  new DelimiterBasedFrameDecoder(8192, Delimiters.nulDelimiter());
-//                  channel.pipeline().addLast(new JsonDecoder());
 //                  channel.pipeline().addLast(new JsonDecoder());
 //                  channel.pipeline().addLast("bytesDecoder",new ByteArrayDecoder());
-
                     channel.pipeline().addLast(new StringDecoder(CharsetUtil.UTF_8));
->>>>>>> 5fc89136202044b915348a2f20d7e56c6ce3a399
+
                     channel.pipeline().addLast(new StringEncoder(CharsetUtil.UTF_8));
                     channel.pipeline().addLast("messageHandler", new MessageHandler());
                 }
@@ -130,10 +127,7 @@ public class ConnectionService implements IPluginInConnectionService, IConnectio
             logger.debug("1 Channel INIT " + "Identifier=>" + identifier + "Address=>" + address);
             ChannelFuture future = bootstrap.connect(address, port).sync();
             Channel channel = future.channel();
-<<<<<<< HEAD
 
-=======
->>>>>>> 5fc89136202044b915348a2f20d7e56c6ce3a399
             //   Connection connection = new Connection(identifier, channel, new JsonRpcClient());
             logger.debug("2 Channel INIT Future" + "Identifier=>" + identifier + channel + address);
             Connection connection = new Connection(identifier, channel);
