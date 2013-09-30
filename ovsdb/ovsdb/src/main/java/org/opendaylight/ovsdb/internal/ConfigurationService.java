@@ -1,8 +1,6 @@
 package org.opendaylight.ovsdb.internal;
 
 
-
-import io.netty.buffer.ByteBufAllocator;
 import io.netty.channel.Channel;
 import org.eclipse.osgi.framework.console.CommandProvider;
 import org.opendaylight.controller.sal.core.Node;
@@ -94,34 +92,23 @@ public class ConfigurationService implements IPluginInBridgeDomainConfigService,
     public Status createBridgeDomain(Node node, String bridgeIdentifier, Map<ConfigConstants, Object> configs) throws Throwable {
         try {
             if (connectionService == null) {
-                logger.error("Couldn't refer to the ConnectionService");
+               // logger.error("Couldn't refer to the ConnectionService");
                 return new Status(StatusCode.NOSERVICE);
             }
 
             Connection connection = this.getConnection(node);
 
-            logger.debug("Configurations Service 2" + connection);
+            //logger.debug("Configurations Service 2" + connection);
             Channel channel = connection.getChannel();
-
-
-
             //Commented until Truncated Replies are Resolved
             //OVSInstance instance = OVSInstance.monitorOVS(connection);
-
             String monitor = ("{\"method\":\"monitor\",\"id\":0,\"params\":[\"Open_vSwitch\",null,{\"Port\":{\"columns\":[\"external_ids\"," +
                     "\"interfaces\"," +
                     "\"name\",\"tag\",\"trunks\"]},\"Controller\":{\"columns\":[\"is_connected\",\"target\"]},\"Interface\":{\"columns\":[\"name\"," +
                     "\"options\"," +
                     "\"type\"]},\"Open_vSwitch\":{\"columns\":[\"bridges\",\"cur_cfg\",\"manager_options\",\"ovs_version\"]}," +
                     "\"Manager\":{\"columns\":[\"is_connected\",\"target\"]},\"Bridge\":{\"columns\":[\"controller\",\"name\",\"ports\"]}}]}");
-
-            //  channel.config().getAllocator().buffer(64000);
-            ByteBufAllocator alloc = channel.alloc();
-
             channel.writeAndFlush(monitor);
-            logger.debug("COnfigurationService Read => " + channel.pipeline().read().toString());
-            channel.writeAndFlush(monitor);
-
 
 /*          Commented until Truncated Replies are Resolved
             connection.sendMessage(monitor);

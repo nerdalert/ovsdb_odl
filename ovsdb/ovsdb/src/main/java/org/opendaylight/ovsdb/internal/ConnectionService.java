@@ -1,22 +1,13 @@
 package org.opendaylight.ovsdb.internal;
 
 import io.netty.bootstrap.Bootstrap;
-
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
-
-import io.netty.channel.Channel;
-import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelInitializer;
-import io.netty.channel.ChannelOption;
-import io.netty.channel.nio.NioEventLoopGroup;
-import io.netty.channel.socket.SocketChannel;
-import io.netty.channel.socket.nio.NioSocketChannel;
-import io.netty.handler.codec.string.StringDecoder;
-
 import io.netty.handler.codec.string.StringEncoder;
+import io.netty.handler.logging.LogLevel;
+import io.netty.handler.logging.LoggingHandler;
 import io.netty.util.CharsetUtil;
 import org.opendaylight.controller.sal.connection.ConnectionConstants;
 import org.opendaylight.controller.sal.connection.IPluginInConnectionService;
@@ -81,7 +72,6 @@ public class ConnectionService implements IPluginInConnectionService, IConnectio
         }
     }
 
-
     @Override
     public Node connect(String identifier, Map<ConnectionConstants, String> params) {
         InetAddress address;
@@ -105,35 +95,30 @@ public class ConnectionService implements IPluginInConnectionService, IConnectio
             Bootstrap bootstrap = new Bootstrap();
             bootstrap.group(new NioEventLoopGroup());
             bootstrap.channel(NioSocketChannel.class);
-            bootstrap.option(ChannelOption.SO_KEEPALIVE, true);
+            bootstrap.option(ChannelOption.TCP_NODELAY, true);
             bootstrap.option(ChannelOption.RCVBUF_ALLOCATOR, new AdaptiveRecvByteBufAllocator(65535, 65535, 65535));
             bootstrap.handler(new ChannelInitializer<SocketChannel>() {
                 @Override
                 public void initChannel(SocketChannel channel) throws Exception {
 
-//                  Add new Handlers here.
-
-                    channel.pipeline().addLast(new JsonDecoder());
-
-//                  Break out into todo break out into channel Init Class
-//                  channel.pipeline().addLast(new JsonDecoder());
-//                  channel.pipeline().addLast("bytesDecoder",new ByteArrayDecoder());
-                    channel.pipeline().addLast(new StringDecoder(CharsetUtil.UTF_8));
-
-                    channel.pipeline().addLast(new StringEncoder(CharsetUtil.UTF_8));
-                    channel.pipeline().addLast("messageHandler", new MessageHandler());
+                  /*Add new Handlers here.
+                  Break out into todo break out into channel Init Class*/
+                    channel.pipeline().addLast(
+                            new LoggingHandler(LogLevel.INFO),
+                            new JsonDecoder(),
+                            new StringEncoder(CharsetUtil.UTF_8),
+                            new MessageHandler());
                 }
             });
-            logger.debug("1 Channel INIT " + "Identifier=>" + identifier + "Address=>" + address);
+            //logger.debug("1 Channel INIT " + "Identifier=>" + identifier + "Address=>" + address);
             ChannelFuture future = bootstrap.connect(address, port).sync();
-            Channel channel = future.channel();
 
+            Channel channel = future.channel();
             //   Connection connection = new Connection(identifier, channel, new JsonRpcClient());
-            logger.debug("2 Channel INIT Future" + "Identifier=>" + identifier + channel + address);
+            //logger.debug("2 Channel INIT Future" + "Identifier=>" + identifier + channel + address);
             Connection connection = new Connection(identifier, channel);
 
             ovsdbConnections.put(identifier, connection);
-
             return connection.getNode();
 
         } catch (Exception e) {
@@ -146,7 +131,6 @@ public class ConnectionService implements IPluginInConnectionService, IConnectio
     public Connection getConnection(Node node) {
         String identifier = (String) node.getID();
         return ovsdbConnections.get(identifier);
-
     }
 
     @Override

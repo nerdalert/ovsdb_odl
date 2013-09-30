@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-
 //import com.googlecode.jsonrpc4j.JsonRpcClient;
 //import com.googlecode.jsonrpc4j.JsonRpcClient.RequestListener;
 
@@ -42,7 +41,6 @@ public class Connection {
     private static final Logger logger = LoggerFactory.getLogger(Connection.class);
 
     //public Connection(String identifier, Channel channel, JsonRpcClient rpcClient) {
-
     public Connection(String identifier, Channel channel) {
 
         super();
@@ -112,7 +110,6 @@ public class Connection {
     public void sendMessage(String message) throws IOException {
         try {
             channel.writeAndFlush(message);
-
             this.idCounter++;
         } catch (Exception e) {
             e.printStackTrace();

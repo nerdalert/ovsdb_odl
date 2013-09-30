@@ -1,22 +1,16 @@
 package org.opendaylight.ovsdb.internal;
 
-
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.MappingJsonFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.netty.buffer.ByteBuf;
-
 import io.netty.buffer.ByteBufInputStream;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageDecoder;
 import io.netty.util.ResourceLeakDetector;
-
-import io.netty.channel.ChannelHandlerContext;
-import io.netty.handler.codec.MessageToMessageDecoder;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,9 +23,10 @@ public class JsonDecoder extends MessageToMessageDecoder<ByteBuf> {
     private final ObjectMapper mapper = new ObjectMapper();
     JsonFactory jf = new MappingJsonFactory();
 
-
     @Override
     protected void decode(ChannelHandlerContext ctx, ByteBuf buf, List<Object> out) throws Exception {
+
+
 
         ResourceLeakDetector.setEnabled(true);
         //Uncomment for String Out
@@ -49,24 +44,26 @@ public class JsonDecoder extends MessageToMessageDecoder<ByteBuf> {
             JsonParser jp = jf.createParser(bbistream);
             JsonNode root = jp.readValueAsTree();
             bbistream.reset();
-            out.add(root);
+
+            //Data hostreply = mapper.treeToValue(root, Data.class);
+            Map hostreply = mapper.treeToValue(root, Map.class);
+
+            out.add(hostreply);
 
         }
     }
 }
 
-/*Alt Decode
-    @Override
-    protected void decode(ChannelHandlerContext ctx, ByteBuf msg, List<Object> out) throws Exception {
-        if (msg == null) {
-            return;
-        }
-        byte[] buffer = new byte[msg.readableBytes()];
-        msg.getBytes(0, buffer);
-        // Binding to Map.Class until Truncated Replies are Resolved
-        Map jsonreply = mapper.readValue(buffer, Map.class);
-        out.add(jsonreply);
-    }
-}*/
+
+//        if (buf == null) {
+//            return;
+//        }
+//        byte[] buffer = new byte[buf.readableBytes()];
+//        buf.getBytes(0, buffer);
+//        // Binding to Map.Class until Truncated Replies are Resolved
+//        Map jsonreply = jsonMapper.readValue(buffer, Map.class);
+//        logger.debug("JSONDecode ==> " + ctx.alloc().compositeDirectBuffer());
+//        out.add(jsonreply);
+//    }
 
 
