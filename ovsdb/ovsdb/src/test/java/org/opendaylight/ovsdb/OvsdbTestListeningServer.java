@@ -17,5 +17,4 @@ public class OvsdbTestListeningServer {
         OvsRPCListener ovslistener = new OvsRPCListener(listenerip, port);
 
     }
-
 }

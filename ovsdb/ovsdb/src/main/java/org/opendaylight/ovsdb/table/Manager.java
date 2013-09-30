@@ -38,6 +38,8 @@ public class Manager {
         private Boolean is_connected;
         @JsonProperty("external_ids")
         private Object external_ids;
+        @JsonProperty("manager_options")
+        private Object manager_options;
 
         @JsonProperty("is_connected")
         public Boolean getIs_connected() {
@@ -62,6 +64,14 @@ public class Manager {
         @JsonProperty("external_ids")
         public void setexternal_ids(Object external_ids) {
             this.external_ids = external_ids;
+        }
+
+        public Object getManager_options() {
+            return manager_options;
+        }
+
+        public void setManager_options(Object manager_options) {
+            this.manager_options = manager_options;
         }
 
         @Override

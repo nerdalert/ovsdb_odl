@@ -45,12 +45,12 @@ public class OvsTable {
         private String ovs_version;
         @JsonProperty("cur_cfg")
         private Integer cur_cfg;
-        @JsonProperty("manager_options")
-        private ArrayList manager_options = new ArrayList<String>();
         @JsonProperty("bridges")
         private Object bridges;
         @JsonProperty("external_ids")
         private Object external_ids;
+        @JsonProperty("manager_options")
+        private Object manager_options;
 
         @JsonProperty("ovs_version")
         public String getOvs_version() {
@@ -82,15 +82,6 @@ public class OvsTable {
             this.bridges = bridges;
         }
 
-        @JsonProperty("manager_options")
-        public List<String> getManager_options() {
-            return manager_options;
-        }
-
-        @JsonProperty("manager_options")
-        public void setManager_options(ArrayList manager_options) {
-            this.manager_options = manager_options;
-        }
 
         @JsonProperty("external_ids")
         public Object getexternal_ids() {
@@ -100,6 +91,14 @@ public class OvsTable {
         @JsonProperty("external_ids")
         public void setexternal_ids(Object external_ids) {
             this.external_ids = external_ids;
+        }
+
+        public Object getManager_options() {
+            return manager_options;
+        }
+
+        public void setManager_options(Object manager_options) {
+            this.manager_options = manager_options;
         }
 
         @Override

@@ -27,7 +27,6 @@ public class MessageHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
      //   logger.debug(ctx.channel().alloc().buffer().alloc().directBuffer().toString());
-        logger.debug("==JSON Inbound Message To ChannelRead ==>" + msg);
 
         logger.info("ChannRead ==> " + msg.toString());
         JsonNode jsonNode;
@@ -42,17 +41,13 @@ public class MessageHandler extends ChannelInboundHandlerAdapter {
 
         if (jsonNode.has("method")) {
             String method = jsonNode.get("method").toString();
-            if (method.contains("echo")) {
+        //    if (method.contains("echo")) {
                 EchoReply echoreply = new EchoReply();
                 JsonNode echoReplyJnode = mapper.valueToTree(echoreply);
-                // The Following String is what the Pojo Sends
-                // String reply = "{\"result\":[], \"id\":\"echo\"}";
-
                 logger.debug("Echo Reply DP ==>" + msg);
                 ctx.writeAndFlush(echoReplyJnode.toString());
             }
         }
-    }
 
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {

@@ -17,13 +17,6 @@ import org.slf4j.LoggerFactory;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-/**
- * Created with IntelliJ IDEA.
- * User: brent
- * Date: 9/29/13
- * Time: 4:55 PM
- * To change this template use File | Settings | File Templates.
- */
 public class OvsRPCListener {
     protected static final Logger logger = LoggerFactory.getLogger(OvsRPCListener.class);
     private int port;

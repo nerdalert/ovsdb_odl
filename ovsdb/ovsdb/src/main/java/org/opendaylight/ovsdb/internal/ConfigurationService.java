@@ -102,14 +102,16 @@ public class ConfigurationService implements IPluginInBridgeDomainConfigService,
             Channel channel = connection.getChannel();
             //Commented until Truncated Replies are Resolved
             //OVSInstance instance = OVSInstance.monitorOVS(connection);
-            String monitor = ("{\"method\":\"monitor\",\"id\":0,\"params\":[\"Open_vSwitch\",null,{\"Port\":{\"columns\":[\"external_ids\"," +
+            String monitor = ("{\"method\":\"monitor\",\"id\":10,\"params\":[\"Open_vSwitch\",null,{\"Port\":{\"columns\":[\"external_ids\"," +
                     "\"interfaces\"," +
                     "\"name\",\"tag\",\"trunks\"]},\"Controller\":{\"columns\":[\"is_connected\",\"target\"]},\"Interface\":{\"columns\":[\"name\"," +
                     "\"options\"," +
                     "\"type\"]},\"Open_vSwitch\":{\"columns\":[\"bridges\",\"cur_cfg\",\"manager_options\",\"ovs_version\"]}," +
                     "\"Manager\":{\"columns\":[\"is_connected\",\"target\"]},\"Bridge\":{\"columns\":[\"controller\",\"name\",\"ports\"]}}]}");
-            channel.writeAndFlush(monitor);
-
+            //channel.writeAndFlush(monitor);
+            connection.sendMessage(monitor);
+            logger.debug(connection.getIdentifier());
+            logger.debug("CounterID => " + connection.getIdCounter().toString());
 /*          Commented until Truncated Replies are Resolved
             connection.sendMessage(monitor);
 
